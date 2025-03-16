@@ -3,7 +3,7 @@
   --background-color: #111111;
   --overlay-color: #222222;
   --text-color: #ffffff;
-  --accent-color: #8d65c5;
+  --accent-color: #9f69eb;
   --primary-font-family: Inter;
   --font-size: 16px;
   --border-radius: 10px;
@@ -97,7 +97,6 @@ main {
   border: 2px solid var(--accent-color);
   background-color: transparent;
   outline: none;
-  cursor: pointer;
   padding: 4px 8px;
   border-radius: var(--border-radius);
   transition: var(--transition-effect);
@@ -157,8 +156,9 @@ main {
 #quote-box-footer {
   display: flex;
   align-items: center;
-  column-gap: 5px;
+  gap: 5px;
   padding: 10px 16px;
+  flex-wrap: wrap;
 }
 
 .quote-tags {
@@ -167,7 +167,6 @@ main {
   border: none;
   background-color: var(--accent-color);
   outline: none;
-  cursor: pointer;
   padding: 4px 8px;
   border-radius: var(--border-radius);
 }
@@ -175,4 +174,8 @@ main {
 /* UTILITY CLASSES */
 .pointer {
   cursor: pointer;
+}
+
+.hidden {
+  display: none;
 }
