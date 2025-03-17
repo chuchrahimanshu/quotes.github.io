@@ -52,15 +52,21 @@ p {
   font-size: 28px;
 }
 
-#theme-btn {
+.emoji-btn {
   user-select: none;
   padding: 5px;
   border-radius: var(--border-radius);
   transition: var(--transition-effect);
 }
 
-#theme-btn:hover {
+.emoji-btn:hover {
   background-color: var(--overlay-color);
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* QUOTE BOX SECTION */
@@ -68,7 +74,7 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: calc(100% - 100px);
+  height: calc(100% - 75px);
 }
 
 #quote-box {
