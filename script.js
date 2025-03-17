@@ -1,5 +1,4 @@
 // FETCH QUOTE IMPLEMENTATION
-
 const quoteAuthor = document.querySelector("#quote-box-header p");
 const newQuoteButton = document.querySelector("#quote-box-header button");
 const quote = document.querySelector("#quote");
@@ -39,7 +38,6 @@ fetchNewQuote();
 newQuoteButton.addEventListener("click", fetchNewQuote);
 
 // COPY CLIPBOARD FUNCTIONALITY
-
 const copyButton = document.querySelector("#copy-btn");
 
 function copyToClipboard() {
@@ -52,6 +50,28 @@ function copyToClipboard() {
 }
 
 copyButton.addEventListener("click", copyToClipboard);
+
+// SHARING TO TWITTER
+const tweetButton = document.querySelector("#tweet-btn");
+
+function shareQuoteToTwitter() {
+  const quoteText = `${quote.textContent} ~ By ${quoteAuthor.textContent}`;
+
+  const tags = [];
+  quoteTagsContainer.childNodes.forEach((child) =>
+    tags.push(child.textContent)
+  );
+
+  const tagString = tags.join(",")?.replaceAll("#", "");
+
+  const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
+    quoteText
+  )}&hashtags=${encodeURIComponent(tagString)}`;
+
+  window.open(twitterUrl, "_blank");
+}
+
+tweetButton.addEventListener("click", shareQuoteToTwitter);
 
 // THEME FUNCTIONALITY IMPLEMENTATION
 const themeButton = document.getElementById("theme-btn");
