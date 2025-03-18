@@ -64,9 +64,11 @@ function shareQuoteToTwitter() {
 
   const tagString = tags.join(",")?.replaceAll("#", "");
 
-  const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(quoteText)}&hashtags=${encodeURIComponent(tagString)}`;
+  const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
+    quoteText
+  )}&hashtags=${encodeURIComponent(tagString)}`;
 
-  window.open(twitterUrl, '_blank');
+  window.open(twitterUrl, "_blank");
 }
 
 tweetButton.addEventListener("click", shareQuoteToTwitter);
@@ -78,11 +80,11 @@ const LIGHT_MODE = "🌚";
 
 function handleThemeToggle() {
   const DARK_BACKGROUND = "#111111";
-  const LIGHT_BACKGROUND = "#eeeeee";
+  const LIGHT_BACKGROUND = "#F4F2EE";
   const DARK_TEXT = "#FFFFFF";
   const LIGHT_TEXT = "#000000";
   const DARK_OVERLAY = "#222222";
-  const LIGHT_OVERLAY = "#cccccc";
+  const LIGHT_OVERLAY = "#ffffff";
 
   const currentTheme = themeButton.textContent;
 
@@ -106,6 +108,9 @@ function handleThemeToggle() {
     document.documentElement.style.setProperty("--overlay-color", DARK_OVERLAY);
     document.documentElement.style.setProperty("--text-color", DARK_TEXT);
   }
+  if (sessionStorage.getItem("background") == "true") {
+    showBackgroundImage();
+  }
 }
 
 themeButton.addEventListener("click", handleThemeToggle);
@@ -113,24 +118,25 @@ themeButton.addEventListener("click", handleThemeToggle);
 // RANDOM BACKGROUND FUNCTIONALITY
 const bgButton = document.querySelector("#bg-btn");
 const main = document.querySelector("main");
-const backgroundImagesDark = [
-  "./assets/DARK_BG_1.png", 
-  "./assets/DARK_BG_2.png", 
-  "./assets/DARK_BG_3.jpg", 
-  "./assets/DARK_BG_4.png", 
-  "./assets/DARK_BG_5.png"
-]
+
+const getRandomColor = (range, skip) => {
+  const r = Math.floor(Math.random() * range) + skip;
+  const g = Math.floor(Math.random() * range) + skip;
+  const b = Math.floor(Math.random() * range) + skip;
+  return `rgb(${r}, ${g}, ${b})`;
+};
 
 function showBackgroundImage() {
   const currentTheme = themeButton.textContent;
-  if(currentTheme == DARK_MODE) {
-    const randomNumber = Math.floor(Math.random() * backgroundImagesDark.length);
-    main.style.backgroundImage = `url(${backgroundImagesDark[randomNumber]})`;
-    main.style.backgroundSize = "cover";
+  sessionStorage.setItem("background", "true");
+  if (currentTheme == DARK_MODE) {
+    const firstColor = getRandomColor(56, 0);
+    const secondColor = getRandomColor(56, 0);
+    main.style.background = `linear-gradient(to right, ${firstColor}, ${secondColor})`;
   } else {
-    const randomNumber = Math.floor(Math.random() * backgroundImagesDark.length);
-    main.style.backgroundImage = `url(${backgroundImagesDark[randomNumber]})`;
-    main.style.backgroundSize = "100%";
+    const firstColor = getRandomColor(156, 100);
+    const secondColor = getRandomColor(156, 100);
+    main.style.background = `linear-gradient(to right, ${firstColor}, ${secondColor})`;
   }
 }
 
@@ -140,11 +146,11 @@ bgButton.addEventListener("click", showBackgroundImage);
 const exportButton = document.querySelector("#export-btn");
 
 function exportQuoteAsImage() {
-  html2canvas(quoteBox).then(function(canvas) {
+  html2canvas(quoteBox).then(function (canvas) {
     const image = canvas.toDataURL("image/png");
-    const link = document.createElement('a');
+    const link = document.createElement("a");
     link.href = image;
-    link.download = 'quote.png';
+    link.download = "quote.png";
     link.click();
   });
 }
