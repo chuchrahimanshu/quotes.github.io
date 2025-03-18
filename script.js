@@ -135,3 +135,18 @@ function showBackgroundImage() {
 }
 
 bgButton.addEventListener("click", showBackgroundImage);
+
+// EXPORTING THE QUOTE AS IMAGE
+const exportButton = document.querySelector("#export-btn");
+
+function exportQuoteAsImage() {
+  html2canvas(quoteBox).then(function(canvas) {
+    const image = canvas.toDataURL("image/png");
+    const link = document.createElement('a');
+    link.href = image;
+    link.download = 'quote.png';
+    link.click();
+  });
+}
+
+exportButton.addEventListener("click", exportQuoteAsImage);
