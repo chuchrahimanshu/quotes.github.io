@@ -1,3 +1,13 @@
+/**
+ * Functionality Order
+ * 1. Fetch Quote
+ * 2. Copy Clipboard
+ * 3. Sharing to Twitter
+ * 4. Theme - Dark/Light
+ * 5. Random Background Gradient
+ * 6. Exporting Quote as Image
+ */
+
 // FETCH QUOTE IMPLEMENTATION
 const quoteAuthor = document.querySelector("#quote-box-header p");
 const newQuoteButton = document.querySelector("#quote-box-header button");
